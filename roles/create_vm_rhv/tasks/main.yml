@@ -47,7 +47,6 @@
     size: "{{ size_disk1 }}GiB"
     storage_domain: "{{ storage_domain }}"
     format: cow
-    interface: virtio_scsi
     vm_name: "{{ vm_name }}"
   with_items:
     - disk1
