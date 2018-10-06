@@ -1,10 +1,10 @@
 ---
 
 - name: '[BASTION_VM_RHV][CREATE_VM_RHV] Grab Ovirt Token'
-   ovirt_auth:
-     url: "{{ schema }}://{{ rhv_endpoint }}/ovirt-engine/api"
-     username: "{{ username }}"
-     password: "{{ password }}"
+  ovirt_auth:
+    url: "{{ schema }}://{{ rhv_endpoint }}/ovirt-engine/api"
+    username: "{{ username }}"
+    password: "{{ password }}"
        
 - debug:
     var: hostvars[inventory_hostname]
