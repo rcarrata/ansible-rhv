@@ -15,7 +15,7 @@
     auth: "{{ ovirt_auth }}"
     cluster: "{{ cluster }}"
     template: "{{ rhv_template }}"
-    name: "{{ inventory_hostname }}"
+    name: "{{ vm_name }}"
     state: running
     clone: true
     high_availability: true
@@ -28,7 +28,7 @@
     nics:
       - name: "{{ nic_name }}"
     cloud_init:
-      host_name: "{{ inventory_hostname }}"
+      host_name: "{{ vm_name }}"
       user_name: "{{ user_name }}"
       root_password: "{{ root_pass }}"
     wait: true
@@ -36,7 +36,7 @@
 - name: '[BASTION_VM_RHV][CREATE_VM_RHV] Generate VM disks'
   ovirt_disks:
     auth: "{{ ovirt_auth }}"
-    name: "{{ inventory_hostname }}_{{ item }}"
+    name: "{{ vm_name }}_{{ item }}"
     size: "{{ size_disk1 }}GiB"
     storage_domain: "{{ storage_domain }}"
     format: cow
@@ -46,7 +46,7 @@
     - disk1
   when: disk1 is defined
 
-- name: '[BASTION_VM_RHV][CREATE_VM_RHV]wait for server'
+- name: '[BASTION_VM_RHV][CREATE_VM_RHV] wait for server'
   wait_for:
     port: 22
     host: '{{ inventory_hostname }}'
