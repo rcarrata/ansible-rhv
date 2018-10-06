@@ -6,7 +6,7 @@
   vars_files:
     - "vault/vault.yml"
   roles:
-      - { role: create_vm_rhv }
+    - { role: create_vm_rhv }
       
 
 - name: '[BASTION_VM_RHV] Configure the VMs with the basics'
