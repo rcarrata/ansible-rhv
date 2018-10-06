@@ -31,6 +31,13 @@
       host_name: "{{ vm_name }}"
       user_name: "{{ user_name }}"
       root_password: "{{ root_pass }}"
+    cloud_init_nics:
+      - nic_name: eth0
+        nic_boot_protocol: static
+        nic_ip_address: "{{ vm_ip }}"
+        nic_netmask: 255.255.255.0
+        nic_gateway: "{{ vm_gateway }}"
+        nic_on_boot: true
     wait: true
 
 - name: '[BASTION_VM_RHV][CREATE_VM_RHV] Generate VM disks'
