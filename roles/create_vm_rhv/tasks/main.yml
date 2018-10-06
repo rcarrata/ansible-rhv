@@ -19,7 +19,6 @@
     state: running
     clone: true
     high_availability: true
-    storage_domain: "{{ storage_domain }}"
     memory: "{{ ram }}GiB"
     cpu_cores: "{{ cpu }}"
     cpu_sockets: "{{ cpu_sockets }}"
