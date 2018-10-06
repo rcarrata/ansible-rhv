@@ -1,0 +1,17 @@
+## RHV Specs
+rhv_endpoint: "rhv.example.com"
+schema: "https"
+cluster: "Default"
+username: "admin@internal"
+
+## VM Specs
+rhv_template: "rhel7-guest-image"
+storage_domain: "vmstore00'
+ram: "1"
+cpu: "2"
+cpu_sockets: "2"
+user_name: root
+nic_name: "nic1" 
+disk1: ""
+size_disk1: "1"
+remote_user: "root"
