@@ -1,62 +1,9 @@
 ---
 
-- name: '[BASTION_VM_RHV][CREATE_VM_RHV] Grab Ovirt Token'
-  ovirt_auth:
-    url: "{{ schema }}://{{ ansible_hostname }}/ovirt-engine/api"
-    username: "{{ username }}"
-    password: "{{ password }}"
-       
-- debug:
-    var: hostvars[inventory_hostname]
+- name: "[VM_TEST] Create a file called '/tmp/testfile.txt' with the content 'hello world'."
+  copy: 
+    content: "hello world\n" 
+    dest: "/tmp/testfile.txt"
 
-- name: '[BASTION_VM_RHV][CREATE_VM_RHV] Deploy VMs from template'
-  ovirt_vms:
-    auth: "{{ ovirt_auth }}"
-    cluster: "{{ cluster }}"
-    template: "{{ rhv_template }}"
-    name: "{{ vm_name }}"
-    state: running
-    clone: true
-    high_availability: true
-    storage_domain: "{{ storage_domain }}"
-    memory: "{{ ram }}GiB"
-    cpu_cores: "{{ cpu }}"
-    cpu_sockets: "{{ cpu_sockets }}"
-    type: server
-    timeout: 300
-    operating_system: rhel_7x64
-    nics:
-      - name: "{{ nic_name }}"
-    cloud_init:
-      host_name: "{{ vm_name }}"
-      user_name: "{{ user_name }}"
-      root_password: "{{ root_pass }}"
-    wait: true
-
-- name: '[BASTION_VM_RHV][CREATE_VM_RHV] Generate VM disks'
-  ovirt_disks:
-    auth: "{{ ovirt_auth }}"
-    name: "{{ vm_name }}_{{ item }}"
-    size: "{{ size_disk1 }}GiB"
-    storage_domain: "{{ storage_domain }}"
-    format: cow
-    interface: virtio_scsi
-    vm_name: "{{ inventory_hostname }}"
-  with_items:
-    - disk1
-  when: disk1 is defined
-
-- name: '[BASTION_VM_RHV][CREATE_VM_RHV]wait for server'
-  wait_for:
-    port: 22
-    host: '{{ vm_name }}_{{ item }}'
-    search_regex: OpenSSH
-    delay: 10
-
-- add_host:
-    name: "{{ item.name }}"
-    groups: "inv"
-    ansible_ssh_host: "{{ item.profile.cloud_init_nics[0].nic_ip_address }}"
-    ansible_ssh_user: "{{ remote_user }}"
-    ansible_ssh_pass: "{{ root_pass }}"
-  with_items: "{{ vms }}"
+- name: "[VM_TEST] Echo Some Stuff"
+  shell: "/usr/bin/hostname"

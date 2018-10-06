@@ -40,17 +40,17 @@
         nic_on_boot: true
     wait: true
 
-- name: '[BASTION_VM_RHV][CREATE_VM_RHV] Generate VM disks'
-  ovirt_disks:
-    auth: "{{ ovirt_auth }}"
-    name: "{{ vm_name }}_{{ item }}"
-    size: "{{ size_disk1 }}GiB"
-    storage_domain: "{{ storage_domain }}"
-    format: cow
-    vm_name: "{{ vm_name }}"
-  with_items:
-    - disk1
-  when: disk1 is defined
+#- name: '[BASTION_VM_RHV][CREATE_VM_RHV] Generate VM disks'
+#  ovirt_disks:
+#    auth: "{{ ovirt_auth }}"
+#    name: "{{ vm_name }}_{{ item }}"
+#    size: "{{ size_disk1 }}GiB"
+#    storage_domain: "{{ storage_domain }}"
+#    format: cow
+#    vm_name: "{{ vm_name }}"
+#  with_items:
+#    - disk1
+#  when: disk1 is defined
 
 - name: '[BASTION_VM_RHV][CREATE_VM_RHV] wait for server'
   wait_for:
