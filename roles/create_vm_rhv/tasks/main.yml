@@ -5,6 +5,7 @@
     url: "{{ schema }}://{{ rhv_endpoint }}/ovirt-engine/api"
     username: "{{ username }}"
     password: "{{ password }}"
+    insecure: True
        
 - debug:
     var: hostvars[inventory_hostname]
