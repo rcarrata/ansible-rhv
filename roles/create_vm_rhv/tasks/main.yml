@@ -48,7 +48,7 @@
     storage_domain: "{{ storage_domain }}"
     format: cow
     interface: virtio_scsi
-    vm_name: "{{ inventory_hostname }}"
+    vm_name: "{{ vm_name }}"
   with_items:
     - disk1
   when: disk1 is defined
