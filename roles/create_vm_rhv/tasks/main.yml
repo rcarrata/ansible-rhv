@@ -27,6 +27,7 @@
     operating_system: rhel_7x64
     nics:
       - name: "{{ nic_name }}"
+        profile_name: "{{ nic_profile }}"
     cloud_init:
       host_name: "{{ vm_name }}"
       user_name: "{{ user_name }}"
