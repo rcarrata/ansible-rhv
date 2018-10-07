@@ -11,7 +11,7 @@
 
 - name: '[BASTION_VM_RHV] Configure the VMs with the basics'
   hosts: inv
-  remote_user: "{{ user_remote_vm }}"
+  remote_user: "{{ remote_user }}"
   vars_files: 
     - "vault/vault.yml"
   roles:
