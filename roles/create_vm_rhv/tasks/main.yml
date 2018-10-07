@@ -57,14 +57,13 @@
 - name: '[BASTION_VM_RHV][CREATE_VM_RHV] wait for server'
   wait_for:
     port: 22
-    host: '{{ inventory_hostname }}'
+    host: '{{ vm_ip }}'
     search_regex: OpenSSH
     delay: 10
 
 - add_host:
     name: "{{ item.name }}"
     groups: "inv"
-    ansible_ssh_host: "{{ item.profile.cloud_init_nics[0].nic_ip_address }}"
+    ansible_ssh_host: "{{ vm_ip }}"
     ansible_ssh_user: "{{ remote_user }}"
     ansible_ssh_pass: "{{ root_pass }}"
-  with_items: "{{vms}}"
