@@ -31,11 +31,13 @@
       host_name: "{{ vm_name }}"
       user_name: "{{ user_name }}"
       root_password: "{{ root_pass }}"
+      dns_servers: "{{ vm_dns }}"
+      dns_search: "{{ vm_domain }}"
     cloud_init_nics:
       - nic_name: eth0
         nic_boot_protocol: static
         nic_ip_address: "{{ vm_ip }}"
-        nic_netmask: 255.255.255.0
+        nic_netmask: "{{ vm_netmask }}"
         nic_gateway: "{{ vm_gateway }}"
         nic_on_boot: true
     wait: true
