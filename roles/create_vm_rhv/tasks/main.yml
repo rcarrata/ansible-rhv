@@ -63,7 +63,7 @@
     delay: 10
 
 - add_host:
-    name: "{{ item.name }}"
+    name: "{{ vm_name }}"
     groups: "inv"
     ansible_ssh_host: "{{ vm_ip }}"
     ansible_ssh_user: "{{ remote_user }}"
