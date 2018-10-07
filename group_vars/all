@@ -5,7 +5,7 @@ cluster: "Default"
 username: "admin@internal"
 
 ## VM Specs
-vm_name: "motdlab"
+vm_name: "motdlab.example.com"
 rhv_template: "rhel7-guest-image"
 storage_domain: "vmstore00"
 ram: "1"
